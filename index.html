@@ -1,19 +1,1294 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>CapCut 16.9.0 APK Download</title>
-<meta name="description" content="Download CapCut 16.9.0 APK latest version for Android. Low size, fast download.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>GetApkHub – Download Latest APKs for Android</title>
+  <meta name="description" content="GetApkHub: Fast, secure APK downloads with version selection and smart download manager">
+  <meta name="keywords" content="APK, Android apps, download manager, APK versions">
+  <meta property="og:title" content="GetApkHub – Smart APK Downloader">
+  <meta property="og:description" content="Select version, wait 3 seconds, download securely">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --green: #00c853;
+      --green-dark: #00a844;
+      --green-light: #e8f5e9;
+      --white: #ffffff;
+      --gray-50: #f8f9fa;
+      --gray-100: #f1f3f5;
+      --gray-200: #e9ecef;
+      --gray-300: #dee2e6;
+      --gray-600: #6c757d;
+      --gray-800: #343a40;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+      --shadow-lg: 0 10px 15px -3px rgba(0,200,83,0.1);
+      --radius: 20px;
+    }
+
+    body {
+      background: var(--gray-50);
+      color: var(--gray-800);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .navbar {
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.8rem 0;
+      width: 100%;
+    }
+
+    .nav-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--green);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .logo i {
+      font-size: 1.8rem;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: var(--gray-800);
+      font-weight: 500;
+      transition: color 0.3s;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      color: var(--green);
+    }
+
+    /* Breadcrumb / Location */
+    .breadcrumb {
+      background: var(--white);
+      padding: 0.8rem 1.2rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+
+    .breadcrumb i {
+      color: var(--green);
+      font-size: 0.8rem;
+    }
+
+    .breadcrumb a {
+      color: var(--gray-600);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--green);
+    }
+
+    .breadcrumb .current {
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    /* Main Container */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 1.5rem auto;
+      padding: 0 1.2rem;
+      flex: 1;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    .btn-green {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .btn-green:hover {
+      background: var(--green-dark);
+      transform: scale(1.02);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--green);
+      color: var(--green);
+    }
+
+    .btn-outline:hover {
+      background: var(--green-light);
+    }
+
+    .btn-small {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+      width: auto;
+      display: inline-block;
+    }
+
+    /* App Grid */
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+      width: 100%;
+    }
+
+    .app-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .app-card:hover {
+      box-shadow: var(--shadow-lg);
+    }
+
+    .app-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--green-light), #c8e6c9);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 2.2rem;
+      color: var(--green-dark);
+    }
+
+    .app-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0.8rem 0;
+    }
+
+    .badge {
+      background: var(--green-light);
+      color: var(--green-dark);
+      padding: 0.2rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .version-badge {
+      background: var(--gray-200);
+      padding: 0.2rem 0.7rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+    }
+
+    /* Version Selector */
+    .version-selector {
+      margin: 1.5rem 0;
+      width: 100%;
+    }
+
+    .version-option {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      border: 2px solid var(--gray-200);
+      border-radius: 14px;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+    }
+
+    .version-option:hover {
+      border-color: var(--green);
+      background: var(--green-light);
+    }
+
+    .version-option.selected {
+      border-color: var(--green);
+      background: var(--green-light);
+    }
+
+    .version-option input[type="radio"] {
+      margin-right: 1rem;
+      accent-color: var(--green);
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .version-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .version-name {
+      font-weight: 600;
+      font-size: 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .version-details {
+      color: var(--gray-600);
+      font-size: 0.85rem;
+      margin-top: 0.2rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .version-size {
+      background: var(--gray-200);
+      padding: 0.2rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      margin-left: 0.5rem;
+    }
+
+    /* Countdown Timer */
+    .countdown-container {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: linear-gradient(135deg, var(--green-light), #ffffff);
+      border-radius: var(--radius);
+      margin: 1.5rem 0;
+      width: 100%;
+    }
+
+    .countdown-timer {
+      font-size: 5rem;
+      font-weight: 700;
+      color: var(--green);
+      margin: 1rem 0;
+      font-family: monospace;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: var(--gray-200);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 1.5rem 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--green);
+      width: 0%;
+      transition: width 1s linear;
+    }
+
+    /* Download Section */
+    .download-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      width: 100%;
+    }
+
+    @media (min-width: 500px) {
+      .download-options {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .download-card {
+      background: var(--gray-50);
+      border-radius: 14px;
+      padding: 1.2rem;
+      text-align: center;
+      border: 2px solid var(--gray-200);
+      width: 100%;
+    }
+
+    .download-card i {
+      font-size: 2.2rem;
+      color: var(--green);
+      margin-bottom: 0.8rem;
+    }
+
+    /* Installation Guide */
+    .guide-steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      width: 100%;
+    }
+
+    @media (min-width: 600px) {
+      .guide-steps {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .step {
+      text-align: center;
+      padding: 1.2rem;
+      background: var(--gray-50);
+      border-radius: 14px;
+      position: relative;
+      width: 100%;
+    }
+
+    .step-number {
+      width: 36px;
+      height: 36px;
+      background: var(--green);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin: 0 auto 0.8rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--white);
+      padding: 2rem 0;
+      margin-top: 3rem;
+      border-top: 1px solid var(--gray-200);
+      width: 100%;
+    }
+
+    .footer-content {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.2rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 600px) {
+      .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-links a {
+      color: var(--gray-600);
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    .footer-links a:hover {
+      color: var(--green);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      color: var(--gray-600);
+      border-top: 1px solid var(--gray-200);
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    /* Search Bar */
+    .search-box {
+      display: flex;
+      max-width: 600px;
+      margin: 1.5rem auto;
+      background: var(--white);
+      border-radius: 50px;
+      padding: 0.3rem;
+      box-shadow: var(--shadow-md);
+      width: 100%;
+    }
+
+    .search-box input {
+      flex: 1;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 50px;
+      outline: none;
+      font-size: 1rem;
+      min-width: 0;
+    }
+
+    .search-box button {
+      background: var(--green);
+      border: none;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* Page visibility */
+    .page {
+      display: none;
+      width: 100%;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* Back button */
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--gray-600);
+      text-decoration: none;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .back-button:hover {
+      color: var(--green);
+    }
+
+    /* Version table - FIXED: Responsive table */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 1.5rem 0;
+      border-radius: 12px;
+    }
+
+    .version-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      min-width: 500px; /* Table ko minimum width do taaki mobile pe scroll ho */
+    }
+
+    .version-table th {
+      background: var(--gray-100);
+      padding: 0.8rem;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    .version-table td {
+      padding: 0.8rem;
+      border-bottom: 1px solid var(--gray-200);
+      white-space: nowrap;
+    }
+
+    .version-table td:last-child {
+      white-space: nowrap;
+    }
+
+    .version-table a {
+      color: var(--green);
+      text-decoration: none;
+      padding: 0.3rem 0.8rem;
+      background: var(--green-light);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      display: inline-block;
+    }
+
+    .version-table a:hover {
+      background: var(--green);
+      color: white;
+    }
+
+    /* Categories grid */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+      width: 100%;
+    }
+
+    .category-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .category-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .category-icon {
+      font-size: 2.5rem;
+      color: var(--green);
+      margin-bottom: 1rem;
+    }
+
+    .category-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Location/Breadcrumb styling */
+    .location-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      background: var(--white);
+      padding: 0.8rem 1.2rem;
+      border-radius: 50px;
+      box-shadow: var(--shadow-sm);
+      font-size: 0.95rem;
+    }
+
+    .location-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .location-item a {
+      color: var(--gray-600);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .location-item a:hover {
+      color: var(--green);
+    }
+
+    .location-item .current {
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    .location-separator {
+      color: var(--gray-300);
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .nav-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 0 1rem;
+      }
+      
+      .nav-menu {
+        justify-content: center;
+        gap: 1rem;
+      }
+      
+      .countdown-timer {
+        font-size: 4rem;
+      }
+      
+      .container {
+        padding: 0 1rem;
+      }
+      
+      .version-option {
+        padding: 0.8rem;
+      }
+      
+      .version-name {
+        font-size: 0.95rem;
+      }
+      
+      .version-details {
+        font-size: 0.8rem;
+      }
+      
+      .version-size {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.6rem;
+      }
+      
+      .categories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 0.8rem;
+      }
+      
+      .category-card {
+        padding: 1rem;
+      }
+      
+      .category-icon {
+        font-size: 2rem;
+      }
+      
+      .category-title {
+        font-size: 1rem;
+      }
+
+      .location-bar {
+        font-size: 0.85rem;
+        padding: 0.6rem 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-<h1>CapCut 16.9.0 APK Download</h1>
-<p>CapCut latest version for Android...</p>
-<h2>Features</h2>
-<ul>
-<li>No watermark</li>
-<li>Low size</li>
-<li>Android 9 supported</li>
-</ul>
-<h2>Download Link</h2>
-<a href="#">Download APK</a>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo" onclick="showPage('home'); return false;">
+        <i class="fas fa-download"></i>
+        GetApkHub
+      </a>
+      <div class="nav-menu">
+        <a href="#" onclick="showPage('home'); return false;" class="active">Home</a>
+        <a href="#" onclick="showPage('home'); return false;">Apps</a>
+        <a href="#" onclick="showPage('home'); return false;">Categories</a>
+        <a href="#" onclick="showPage('home'); return false;">About</a>
+        <a href="#" onclick="showPage('home'); return false;">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HOME PAGE (page 1) -->
+  <div id="home-page" class="page active">
+    <div class="container">
+      <!-- Location/Breadcrumb for Home -->
+      <div class="location-bar">
+        <div class="location-item">
+          <i class="fas fa-home" style="color: var(--green);"></i>
+          <span class="current">Home</span>
+        </div>
+      </div>
+
+      <!-- Hero Section -->
+      <section class="hero" style="text-align: center; margin-bottom: 2rem;">
+        <h1 style="font-size: 2rem; margin-bottom: 0.8rem;">Download Latest APKs for Android</h1>
+        <p style="color: var(--gray-600); font-size: 1.1rem;">Fast, secure, and always updated with version selection</p>
+        
+        <div class="search-box">
+          <input type="text" placeholder="Search for apps...">
+          <button><i class="fas fa-search"></i> Search</button>
+        </div>
+      </section>
+
+      <!-- Featured Apps -->
+      <section id="apps">
+        <h2 style="margin-bottom: 1.5rem; font-size: 1.6rem;">Featured Apps</h2>
+        <div class="app-grid">
+          <!-- App Card 1 -->
+          <div class="app-card" onclick="openVersionPage('Video Editor Pro')">
+            <div class="app-icon">
+              <i class="fas fa-video"></i>
+            </div>
+            <h3>Video Editor Pro</h3>
+            <div class="app-meta">
+              <span class="badge">Editors Pick</span>
+              <span class="version-badge">v3.2.1</span>
+            </div>
+            <p style="color: var(--gray-600); margin: 0.8rem 0; font-size: 0.95rem;">Professional video editor with effects</p>
+            <div style="display: flex; gap: 0.5rem; margin-top: 0.8rem;">
+              <span style="background: var(--gray-100); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.8rem;">34 MB</span>
+              <span style="background: var(--gray-100); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.8rem;">Android 8+</span>
+            </div>
+            <button class="btn btn-green" style="margin-top: 1.2rem;" onclick="event.stopPropagation(); openVersionPage('Video Editor Pro')">
+              <i class="fas fa-download"></i> Download
+            </button>
+          </div>
+
+          <!-- App Card 2 -->
+          <div class="app-card" onclick="openVersionPage('Asphalt Xtreme')">
+            <div class="app-icon">
+              <i class="fas fa-gamepad"></i>
+            </div>
+            <h3>Asphalt Xtreme</h3>
+            <div class="app-meta">
+              <span class="badge">Game</span>
+              <span class="version-badge">v5.6.0</span>
+            </div>
+            <p style="color: var(--gray-600); margin: 0.8rem 0; font-size: 0.95rem;">Offroad racing game</p>
+            <div style="display: flex; gap: 0.5rem; margin-top: 0.8rem;">
+              <span style="background: var(--gray-100); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.8rem;">1.2 GB</span>
+              <span style="background: var(--gray-100); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.8rem;">Android 9+</span>
+            </div>
+            <button class="btn btn-green" style="margin-top: 1.2rem;" onclick="event.stopPropagation(); openVersionPage('Asphalt Xtreme')">
+              <i class="fas fa-download"></i> Download
+            </button>
+          </div>
+
+          <!-- App Card 3 -->
+          <div class="app-card" onclick="openVersionPage('BeSocial')">
+            <div class="app-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3>BeSocial</h3>
+            <div class="app-meta">
+              <span class="badge">Social</span>
+              <span class="version-badge">v12.4.0</span>
+            </div>
+            <p style="color: var(--gray-600); margin: 0.8rem 0; font-size: 0.95rem;">Ad-free social experience</p>
+            <div style="display: flex; gap: 0.5rem; margin-top: 0.8rem;">
+              <span style="background: var(--gray-100); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.8rem;">45 MB</span>
+              <span style="background: var(--gray-100); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.8rem;">Android 7+</span>
+            </div>
+            <button class="btn btn-green" style="margin-top: 1.2rem;" onclick="event.stopPropagation(); openVersionPage('BeSocial')">
+              <i class="fas fa-download"></i> Download
+            </button>
+          </div>
+
+          <!-- App Card 4 -->
+          <div class="app-card" onclick="openVersionPage('Toolbox Plus')">
+            <div class="app-icon">
+              <i class="fas fa-tools"></i>
+            </div>
+            <h3>Toolbox Plus</h3>
+            <div class="app-meta">
+              <span class="badge">Tools</span>
+              <span class="version-badge">v2.0.5</span>
+            </div>
+            <p style="color: var(--gray-600); margin: 0.8rem 0; font-size: 0.95rem;">System cleaner and optimizer</p>
+            <div style="display: flex; gap: 0.5rem; margin-top: 0.8rem;">
+              <span style="background: var(--gray-100); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.8rem;">28 MB</span>
+              <span style="background: var(--gray-100); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.8rem;">Android 6+</span>
+            </div>
+            <button class="btn btn-green" style="margin-top: 1.2rem;" onclick="event.stopPropagation(); openVersionPage('Toolbox Plus')">
+              <i class="fas fa-download"></i> Download
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Categories -->
+      <section id="categories" style="margin-top: 3rem;">
+        <h2 style="margin-bottom: 1.5rem; font-size: 1.6rem;">Categories</h2>
+        <div class="categories-grid">
+          <div class="category-card" onclick="showPage('home')">
+            <div class="category-icon">
+              <i class="fas fa-video"></i>
+            </div>
+            <h3 class="category-title">Video Editors</h3>
+            <span class="badge">24 apps</span>
+          </div>
+          <div class="category-card" onclick="showPage('home')">
+            <div class="category-icon">
+              <i class="fas fa-chess"></i>
+            </div>
+            <h3 class="category-title">Games</h3>
+            <span class="badge">156 apps</span>
+          </div>
+          <div class="category-card" onclick="showPage('home')">
+            <div class="category-icon">
+              <i class="fas fa-hashtag"></i>
+            </div>
+            <h3 class="category-title">Social Apps</h3>
+            <span class="badge">43 apps</span>
+          </div>
+          <div class="category-card" onclick="showPage('home')">
+            <div class="category-icon">
+              <i class="fas fa-wrench"></i>
+            </div>
+            <h3 class="category-title">Tools</h3>
+            <span class="badge">67 apps</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- VERSION SELECT PAGE (page 2) -->
+  <div id="version-page" class="page">
+    <div class="container" style="margin-top: 0; padding-top: 1.5rem;">
+      <!-- Location/Breadcrumb for Version Page -->
+      <div class="location-bar">
+        <div class="location-item">
+          <a href="#" onclick="showPage('home'); return false;">Home</a>
+        </div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item">
+          <span class="current" id="locationAppName">Video Editor Pro</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.5rem;">
+          <div class="app-icon" style="width: 60px; height: 60px; font-size: 1.8rem;">
+            <i class="fas fa-video"></i>
+          </div>
+          <h2 id="versionAppName">Video Editor Pro</h2>
+        </div>
+        
+        <h3 style="margin-bottom: 1.2rem; font-size: 1.2rem;">Select Version to Download:</h3>
+        
+        <div class="version-selector">
+          <div class="version-option selected" onclick="selectVersion('v3.2.1', '34 MB', this)">
+            <input type="radio" name="version" value="v3.2.1" checked>
+            <div class="version-info">
+              <div class="version-name">Version 3.2.1 (Latest)</div>
+              <div class="version-details">Added new effects, Bug fixes, Performance improved</div>
+            </div>
+            <span class="version-size">34 MB</span>
+          </div>
+          
+          <div class="version-option" onclick="selectVersion('v3.1.0', '32 MB', this)">
+            <input type="radio" name="version" value="v3.1.0">
+            <div class="version-info">
+              <div class="version-name">Version 3.1.0</div>
+              <div class="version-details">Stable release, No watermark</div>
+            </div>
+            <span class="version-size">32 MB</span>
+          </div>
+          
+          <div class="version-option" onclick="selectVersion('v3.0.5', '31 MB', this)">
+            <input type="radio" name="version" value="v3.0.5">
+            <div class="version-info">
+              <div class="version-name">Version 3.0.5</div>
+              <div class="version-details">Lightweight version, Basic editing</div>
+            </div>
+            <span class="version-size">31 MB</span>
+          </div>
+        </div>
+
+        <button class="btn btn-green" style="padding: 1rem; font-size: 1.1rem;" onclick="goToCountdown()">
+          Continue to Download <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COUNTDOWN PAGE (page 3) -->
+  <div id="countdown-page" class="page">
+    <div class="container" style="margin-top: 0; padding-top: 1.5rem;">
+      <!-- Location/Breadcrumb for Countdown Page -->
+      <div class="location-bar">
+        <div class="location-item">
+          <a href="#" onclick="showPage('home'); return false;">Home</a>
+        </div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item">
+          <a href="#" onclick="showPage('version'); return false;" id="locationVersionApp">Video Editor Pro</a>
+        </div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item">
+          <span class="current">Preparing</span>
+        </div>
+      </div>
+
+      <div class="countdown-container">
+        <i class="fas fa-hourglass-half" style="font-size: 3rem; color: var(--green);"></i>
+        <h2 style="margin: 1rem 0;">Preparing Your Download</h2>
+        <p style="color: var(--gray-600);">Please wait while we prepare your file...</p>
+        
+        <div class="countdown-timer" id="countdownDisplay">3</div>
+        
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+        </div>
+        
+        <p style="color: var(--gray-600);">Version: <span id="countdownVersion">v3.2.1</span> | Size: <span id="countdownSize">34 MB</span></p>
+        
+        <div id="readyToDownload" style="display: none;">
+          <p style="color: var(--green); margin: 1.5rem 0 1rem;"><i class="fas fa-check-circle"></i> Your download is ready!</p>
+          <button class="btn btn-green" style="padding: 1rem 2rem; width: auto;" onclick="goToFinalDownload()">
+            <i class="fas fa-download"></i> Download Now
+          </button>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray-600);">
+            <i class="fas fa-shield-alt"></i> Scanned with Play Protect
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL DOWNLOAD PAGE (page 4) -->
+  <div id="final-page" class="page">
+    <div class="container" style="margin-top: 0; padding-top: 1.5rem;">
+      <!-- Location/Breadcrumb for Final Page -->
+      <div class="location-bar">
+        <div class="location-item">
+          <a href="#" onclick="showPage('home'); return false;">Home</a>
+        </div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item">
+          <a href="#" onclick="showPage('version'); return false;" id="finalLocationApp">Video Editor Pro</a>
+        </div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item">
+          <a href="#" onclick="showPage('countdown'); return false;">Preparing</a>
+        </div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item">
+          <span class="current">Download</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+          <div class="app-icon" style="width: 80px; height: 80px;">
+            <i class="fas fa-video fa-2x"></i>
+          </div>
+          <div>
+            <h2 id="finalAppName">Video Editor Pro</h2>
+            <p><span class="badge">Version <span id="finalVersion">3.2.1</span></span></p>
+            <p><i class="fas fa-database"></i> Size: <span id="finalSize">34 MB</span></p>
+          </div>
+        </div>
+
+        <div style="background: #fff3cd; color: #856404; padding: 1rem; border-radius: 12px; margin: 1.5rem 0;">
+          <i class="fas fa-shield-alt"></i> Safety notice: This file has been verified and is 100 percent safe to install.
+        </div>
+
+        <div class="download-options">
+          <div class="download-card">
+            <i class="fas fa-bolt"></i>
+            <h3>Direct Download</h3>
+            <p style="font-size: 0.9rem; color: var(--gray-600); margin-bottom: 1rem;">Fast server, No limits</p>
+            <a href="#" class="btn btn-green" onclick="return false;">
+              <i class="fas fa-download"></i> Download APK
+            </a>
+          </div>
+          
+          <div class="download-card">
+            <i class="fas fa-copy"></i>
+            <h3>Mirror Download</h3>
+            <p style="font-size: 0.9rem; color: var(--gray-600); margin-bottom: 1rem;">Alternative server</p>
+            <a href="#" class="btn btn-outline" onclick="return false;">
+              <i class="fas fa-download"></i> Mirror Link
+            </a>
+          </div>
+        </div>
+
+        <!-- Installation Guide -->
+        <h3 style="margin: 2rem 0 1rem;">How to Install APK</h3>
+        <div class="guide-steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <i class="fas fa-download" style="font-size: 2rem; color: var(--green); margin: 0.8rem 0;"></i>
+            <h4>Download APK</h4>
+            <p style="color: var(--gray-600); font-size: 0.9rem;">Click the download button above</p>
+          </div>
+          
+          <div class="step">
+            <div class="step-number">2</div>
+            <i class="fas fa-shield" style="font-size: 2rem; color: var(--green); margin: 0.8rem 0;"></i>
+            <h4>Allow Installation</h4>
+            <p style="color: var(--gray-600); font-size: 0.9rem;">Enable Unknown Sources in settings</p>
+          </div>
+          
+          <div class="step">
+            <div class="step-number">3</div>
+            <i class="fas fa-check-circle" style="font-size: 2rem; color: var(--green); margin: 0.8rem 0;"></i>
+            <h4>Install and Enjoy</h4>
+            <p style="color: var(--gray-600); font-size: 0.9rem;">Open the app and start using</p>
+          </div>
+        </div>
+
+        <!-- Version History - FIXED: Responsive table -->
+        <h3 style="margin: 2rem 0 1rem;">Version History</h3>
+        <div class="table-responsive">
+          <table class="version-table">
+            <tr>
+              <th>Version</th>
+              <th>Size</th>
+              <th>Android</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+            <tr>
+              <td>3.2.1</td>
+              <td>34 MB</td>
+              <td>8+</td>
+              <td>Mar 2025</td>
+              <td><a href="#" onclick="return false;">Download</a></td>
+            </tr>
+            <tr>
+              <td>3.1.0</td>
+              <td>32 MB</td>
+              <td>8+</td>
+              <td>Jan 2025</td>
+              <td><a href="#" onclick="return false;">Download</a></td>
+            </tr>
+            <tr>
+              <td>3.0.5</td>
+              <td>31 MB</td>
+              <td>7+</td>
+              <td>Dec 2024</td>
+              <td><a href="#" onclick="return false;">Download</a></td>
+            </tr>
+            <tr>
+              <td>2.9.0</td>
+              <td>30 MB</td>
+              <td>7+</td>
+              <td>Oct 2024</td>
+              <td><a href="#" onclick="return false;">Download</a></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer (same on all pages) -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <h3 style="color: var(--green); margin-bottom: 0.8rem;">GetApkHub</h3>
+        <p style="color: var(--gray-600); font-size: 0.95rem;">Your trusted source for Android APKs</p>
+      </div>
+      
+      <div class="footer-links">
+        <h4 style="font-size: 1rem; margin-bottom: 0.5rem;">Quick Links</h4>
+        <a href="#" onclick="showPage('home'); return false;">Home</a>
+        <a href="#" onclick="showPage('home'); return false;">Apps</a>
+        <a href="#" onclick="showPage('home'); return false;">Categories</a>
+        <a href="#" onclick="showPage('home'); return false;">About Us</a>
+      </div>
+      
+      <div class="footer-links">
+        <h4 style="font-size: 1rem; margin-bottom: 0.5rem;">Legal</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">DMCA</a>
+        <a href="#">Disclaimer</a>
+      </div>
+      
+      <div class="footer-links">
+        <h4 style="font-size: 1rem; margin-bottom: 0.5rem;">Contact</h4>
+        <a href="#"><i class="fas fa-envelope"></i> support@getapkhub.com</a>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2025 GetApkHub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Global variables
+    let selectedVersion = 'v3.2.1';
+    let selectedSize = '34 MB';
+    let currentAppName = 'Video Editor Pro';
+    let countdownInterval;
+    
+    // Show different pages
+    function showPage(pageName) {
+      // Hide all pages
+      document.getElementById('home-page').classList.remove('active');
+      document.getElementById('version-page').classList.remove('active');
+      document.getElementById('countdown-page').classList.remove('active');
+      document.getElementById('final-page').classList.remove('active');
+      
+      // Show selected page
+      if (pageName === 'home') {
+        document.getElementById('home-page').classList.add('active');
+      } else if (pageName === 'version') {
+        document.getElementById('version-page').classList.add('active');
+        // Update location app name
+        document.getElementById('locationAppName').textContent = currentAppName;
+      } else if (pageName === 'countdown') {
+        document.getElementById('countdown-page').classList.add('active');
+        // Update location links
+        document.getElementById('locationVersionApp').textContent = currentAppName;
+        document.getElementById('locationVersionApp').onclick = function() { showPage('version'); };
+      } else if (pageName === 'final') {
+        document.getElementById('final-page').classList.add('active');
+        // Update location links
+        document.getElementById('finalLocationApp').textContent = currentAppName;
+        document.getElementById('finalLocationApp').onclick = function() { showPage('version'); };
+      }
+      
+      // Direct top pe le jao
+      window.scrollTo(0, 0);
+      
+      // Clear any running countdown
+      if (countdownInterval) {
+        clearInterval(countdownInterval);
+      }
+      
+      // Agar countdown page hai to reset karo
+      if (pageName === 'countdown') {
+        document.getElementById('readyToDownload').style.display = 'none';
+        document.getElementById('countdownDisplay').textContent = '3';
+        document.getElementById('progressFill').style.width = '0%';
+      }
+    }
+    
+    // Open version page with app name
+    function openVersionPage(appName) {
+      currentAppName = appName;
+      document.getElementById('versionAppName').textContent = appName;
+      document.getElementById('finalAppName').textContent = appName;
+      document.getElementById('locationAppName').textContent = appName;
+      
+      // Reset to latest version
+      selectedVersion = 'v3.2.1';
+      selectedSize = '34 MB';
+      
+      // Reset selection UI
+      const versionOptions = document.querySelectorAll('#version-page .version-option');
+      versionOptions.forEach(opt => {
+        opt.classList.remove('selected');
+      });
+      if (versionOptions.length > 0) {
+        versionOptions[0].classList.add('selected');
+        const radio = versionOptions[0].querySelector('input[type="radio"]');
+        if (radio) radio.checked = true;
+      }
+      
+      showPage('version');
+    }
+    
+    // Select version
+    function selectVersion(version, size, element) {
+      selectedVersion = version;
+      selectedSize = size;
+      
+      // Remove selected class from all
+      document.querySelectorAll('#version-page .version-option').forEach(opt => {
+        opt.classList.remove('selected');
+      });
+      
+      // Add selected class to clicked element
+      element.classList.add('selected');
+      const radio = element.querySelector('input[type="radio"]');
+      if (radio) radio.checked = true;
+    }
+    
+    // Go to countdown page
+    function goToCountdown() {
+      document.getElementById('countdownVersion').textContent = selectedVersion;
+      document.getElementById('countdownSize').textContent = selectedSize;
+      
+      // Hide ready message
+      document.getElementById('readyToDownload').style.display = 'none';
+      
+      // Reset countdown
+      document.getElementById('countdownDisplay').textContent = '3';
+      document.getElementById('progressFill').style.width = '0%';
+      
+      showPage('countdown');
+      
+      // Start countdown
+      let count = 3;
+      const countdownEl = document.getElementById('countdownDisplay');
+      const progressEl = document.getElementById('progressFill');
+      
+      // Clear any existing interval
+      if (countdownInterval) {
+        clearInterval(countdownInterval);
+      }
+      
+      countdownInterval = setInterval(() => {
+        count--;
+        countdownEl.textContent = count;
+        progressEl.style.width = ((3 - count) * 33.33) + '%';
+        
+        if (count === 0) {
+          clearInterval(countdownInterval);
+          countdownEl.textContent = '✓';
+          document.getElementById('readyToDownload').style.display = 'block';
+        }
+      }, 1000);
+    }
+    
+    // Go to final download page
+    function goToFinalDownload() {
+      document.getElementById('finalVersion').textContent = selectedVersion.replace('v', '');
+      document.getElementById('finalSize').textContent = selectedSize;
+      showPage('final');
+    }
+  </script>
 </body>
 </html>
