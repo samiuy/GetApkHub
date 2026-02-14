@@ -3,11 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Yedo Apkorbito – Download Latest APKs for Android</title>
-  <meta name="description" content="Yedo Apkorbito: Fast, secure APK downloads with version selection and smart download manager">
-  <meta name="keywords" content="APK, Android apps, download manager, APK versions">
-  <meta property="og:title" content="Yedo Apkorbito – Smart APK Downloader">
-  <meta property="og:description" content="Select version, wait 3 seconds, download securely">
+  <title>Apkorbito – Discover Android Apps</title>
+  <meta name="description" content="Discover Android apps with detailed information, version history, and clean download experience.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
@@ -76,6 +73,7 @@
       display: flex;
       align-items: center;
       gap: 0.3rem;
+      cursor: pointer;
     }
 
     .logo i {
@@ -185,11 +183,6 @@
       display: block;
     }
 
-    /* Hide old nav menu */
-    .nav-menu {
-      display: none;
-    }
-
     /* Main Container */
     .container {
       width: 100%;
@@ -211,7 +204,7 @@
     }
 
     .card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-2px);
       box-shadow: var(--shadow-lg);
     }
 
@@ -253,7 +246,7 @@
       width: 100%;
     }
 
-    /* App Grid (Home Page) */
+    /* App Grid */
     .app-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -274,6 +267,7 @@
 
     .app-card:hover {
       box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
     }
 
     .app-icon {
@@ -287,6 +281,13 @@
       margin-bottom: 1rem;
       font-size: 2.2rem;
       color: var(--green-dark);
+    }
+
+    .app-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 18px;
     }
 
     .app-meta {
@@ -319,29 +320,81 @@
       font-size: 0.8rem;
     }
 
+    /* Categories Grid */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+      width: 100%;
+    }
+
+    .category-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .category-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .category-icon {
+      font-size: 2.5rem;
+      color: var(--green);
+      margin-bottom: 1rem;
+    }
+
+    .category-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
     /* App Detail Page */
     .app-detail-header {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 2rem;
       margin-bottom: 2rem;
       flex-wrap: wrap;
     }
 
     .detail-icon {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       background: linear-gradient(135deg, var(--green-light), #c8e6c9);
-      border-radius: 24px;
+      border-radius: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3rem;
+      font-size: 3.5rem;
       color: var(--green-dark);
+      box-shadow: var(--shadow-md);
+    }
+
+    .detail-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 28px;
     }
 
     .detail-title h1 {
-      font-size: 2rem;
+      font-size: 2.2rem;
+      margin-bottom: 0.3rem;
+      color: var(--gray-800);
+    }
+
+    .detail-title .developer {
+      color: var(--gray-600);
+      font-size: 1.1rem;
       margin-bottom: 0.5rem;
     }
 
@@ -354,133 +407,246 @@
 
     .meta-item {
       background: var(--gray-100);
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 1.2rem;
       border-radius: 50px;
       display: flex;
       align-items: center;
       gap: 0.5rem;
       font-size: 0.95rem;
+      color: var(--gray-700);
     }
 
     .meta-item i {
       color: var(--green);
+      width: 18px;
     }
 
-    /* Mod Info */
+    /* Info Grid */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: var(--gray-50);
+      border-radius: 16px;
+    }
+
+    .info-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-label {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .info-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-top: 0.2rem;
+    }
+
+    /* Collapsible MOD Info */
     .mod-info {
       background: linear-gradient(135deg, #fff3cd, #ffe69b);
-      border-radius: 14px;
-      padding: 1.2rem;
+      border-radius: 16px;
       margin: 1.5rem 0;
       border-left: 4px solid #ffc107;
+      overflow: hidden;
     }
 
-    .mod-info h3 {
+    .mod-header {
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .mod-header h3 {
       color: #856404;
-      margin-bottom: 0.8rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      font-size: 1.1rem;
     }
 
-    .mod-info ul {
+    .mod-header i {
+      transition: transform 0.3s;
+    }
+
+    .mod-header.active i {
+      transform: rotate(90deg);
+    }
+
+    .mod-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .mod-content.active {
+      max-height: 500px;
+      transition: max-height 0.5s ease-in;
+    }
+
+    .mod-content ul {
+      padding: 0 1.5rem 1.5rem 3rem;
       list-style: none;
-      padding-left: 1.5rem;
     }
 
-    .mod-info li {
-      margin: 0.5rem 0;
+    .mod-content li {
+      margin: 0.8rem 0;
       color: #856404;
       position: relative;
     }
 
-    .mod-info li:before {
+    .mod-content li:before {
       content: "✓";
       color: #00c853;
       position: absolute;
-      left: -1.2rem;
+      left: -1.5rem;
       font-weight: bold;
+      font-size: 1.1rem;
     }
 
     /* Screenshots */
     .screenshots-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 1rem;
       margin: 1.5rem 0;
     }
 
     .screenshot {
       background: var(--gray-100);
-      border-radius: 14px;
+      border-radius: 16px;
       aspect-ratio: 9/16;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .screenshot:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .screenshot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .screenshot-placeholder {
+      width: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
       color: var(--gray-600);
-      border: 2px dashed var(--gray-300);
-    }
-
-    .screenshot i {
       font-size: 2rem;
-      opacity: 0.5;
     }
 
-    /* FAQ */
-    .faq-item {
-      border-bottom: 1px solid var(--gray-200);
-      padding: 1.2rem 0;
-    }
-
-    .faq-item:last-child {
-      border-bottom: none;
-    }
-
-    .faq-question {
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--gray-800);
-    }
-
-    .faq-question i {
-      color: var(--green);
-    }
-
-    .faq-answer {
-      color: var(--gray-600);
-      padding-left: 1.8rem;
-      line-height: 1.5;
-    }
-
-    /* Download Options */
-    .download-options {
+    /* Features List */
+    .features-list {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1rem;
       margin: 1.5rem 0;
     }
 
-    @media (min-width: 500px) {
-      .download-options {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .download-card {
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.8rem;
       background: var(--gray-50);
-      border-radius: 14px;
-      padding: 1.5rem;
-      text-align: center;
-      border: 2px solid var(--gray-200);
+      border-radius: 12px;
     }
 
-    .download-card i {
-      font-size: 2.5rem;
+    .feature-item i {
       color: var(--green);
+      font-size: 1.2rem;
+      width: 24px;
+      text-align: center;
+    }
+
+    .feature-item span {
+      color: var(--gray-700);
+      font-size: 0.95rem;
+    }
+
+    /* What's New */
+    .whats-new {
+      background: var(--gray-50);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--green);
+    }
+
+    .whats-new h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       margin-bottom: 1rem;
+      color: var(--gray-800);
+    }
+
+    .whats-new p {
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    /* Disclaimer */
+    .app-disclaimer {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 1.5rem 0;
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      border: 1px solid var(--gray-200);
+      text-align: center;
+    }
+
+    /* Download Section */
+    .download-section {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .download-button {
+      background: var(--green);
+      color: white;
+      padding: 1rem 3rem;
+      border-radius: 60px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,200,83,0.3);
+      transition: all 0.3s;
+    }
+
+    .download-button:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,200,83,0.4);
+    }
+
+    .download-button i {
+      margin-right: 0.5rem;
     }
 
     /* Version Selector */
@@ -519,17 +685,10 @@
 
     .version-info {
       flex: 1;
-      min-width: 0;
     }
 
     .version-name {
       font-weight: 600;
-    }
-
-    .version-details {
-      color: var(--gray-600);
-      font-size: 0.85rem;
-      margin-top: 0.2rem;
     }
 
     .version-size {
@@ -537,7 +696,6 @@
       padding: 0.2rem 0.8rem;
       border-radius: 50px;
       font-size: 0.85rem;
-      flex-shrink: 0;
       margin-left: 0.5rem;
     }
 
@@ -574,84 +732,7 @@
       transition: width 1s linear;
     }
 
-    /* Installation Guide */
-    .guide-steps {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-
-    @media (min-width: 600px) {
-      .guide-steps {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .step {
-      text-align: center;
-      padding: 1.2rem;
-      background: var(--gray-50);
-      border-radius: 14px;
-    }
-
-    .step-number {
-      width: 36px;
-      height: 36px;
-      background: var(--green);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      margin: 0 auto 0.8rem;
-    }
-
-    /* Table */
-    .table-responsive {
-      width: 100%;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      margin: 1.5rem 0;
-    }
-
-    .version-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.9rem;
-      min-width: 500px;
-    }
-
-    .version-table th {
-      background: var(--gray-100);
-      padding: 0.8rem;
-      text-align: left;
-      white-space: nowrap;
-    }
-
-    .version-table td {
-      padding: 0.8rem;
-      border-bottom: 1px solid var(--gray-200);
-      white-space: nowrap;
-    }
-
-    .version-table a {
-      color: var(--green);
-      text-decoration: none;
-      padding: 0.3rem 0.8rem;
-      background: var(--green-light);
-      border-radius: 50px;
-      font-size: 0.85rem;
-      display: inline-block;
-    }
-
-    .version-table a:hover {
-      background: var(--green);
-      color: white;
-    }
-
-    /* Location/Breadcrumb */
+    /* LOCATION BAR */
     .location-bar {
       display: flex;
       align-items: center;
@@ -665,20 +746,16 @@
       flex-wrap: wrap;
     }
 
-    .location-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .location-item a {
+    .location-item span {
       color: var(--gray-600);
-      text-decoration: none;
       cursor: pointer;
+      padding: 0.2rem 0.4rem;
+      border-radius: 8px;
     }
 
-    .location-item a:hover {
+    .location-item span:hover {
       color: var(--green);
+      background: var(--green-light);
     }
 
     .location-item .current {
@@ -690,36 +767,101 @@
       color: var(--gray-300);
     }
 
-    /* Search */
+    /* SEARCH BOX - FIXED & CENTERED */
     .search-box {
-      display: flex;
-      max-width: 600px;
-      margin: 1.5rem auto;
-      background: var(--white);
-      border-radius: 50px;
-      padding: 0.3rem;
-      box-shadow: var(--shadow-md);
+      display: flex !important;
+      max-width: 600px !important;
+      width: 90% !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      margin-top: 1.5rem !important;
+      margin-bottom: 1.5rem !important;
+      background: var(--white) !important;
+      border-radius: 50px !important;
+      padding: 0.3rem !important;
+      box-shadow: var(--shadow-md) !important;
+      position: relative !important;
+      left: 0 !important;
+      right: 0 !important;
+      transform: none !important;
     }
 
     .search-box input {
-      flex: 1;
-      border: none;
-      padding: 0.8rem 1.2rem;
-      border-radius: 50px;
-      outline: none;
-      font-size: 1rem;
-      min-width: 0;
+      flex: 1 !important;
+      border: none !important;
+      padding: 0.8rem 1.2rem !important;
+      border-radius: 50px !important;
+      outline: none !important;
+      font-size: 1rem !important;
+      min-width: 0 !important;
     }
 
     .search-box button {
-      background: var(--green);
-      border: none;
-      color: white;
-      padding: 0.6rem 1.2rem;
-      border-radius: 50px;
-      cursor: pointer;
-      font-weight: 600;
-      white-space: nowrap;
+      background: var(--green) !important;
+      border: none !important;
+      color: white !important;
+      padding: 0.6rem 1.8rem !important;
+      border-radius: 50px !important;
+      cursor: pointer !important;
+      font-weight: 600 !important;
+      white-space: nowrap !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0.6rem !important;
+      min-width: 110px !important;
+      transition: all 0.3s !important;
+    }
+
+    .search-box button:hover {
+      background: var(--green-dark) !important;
+      transform: scale(1.02) !important;
+    }
+
+    .search-box button i {
+      font-size: 1rem !important;
+    }
+
+    /* Mobile ke liye */
+    @media (max-width: 480px) {
+      .search-box {
+        width: 95% !important;
+        margin: 1rem auto !important;
+      }
+      
+      .search-box button {
+        padding: 0.6rem 1.2rem !important;
+        min-width: 90px !important;
+        gap: 0.4rem !important;
+      }
+      
+      .search-box button i {
+        font-size: 0.9rem !important;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      width: 100%;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.8rem;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      color: var(--gray-600);
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     /* Footer */
@@ -781,6 +923,71 @@
       display: block;
     }
 
+    /* Modal for screenshot preview */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 3000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    /* Legal Pages Styling */
+    .legal-content {
+      line-height: 1.8;
+    }
+
+    .legal-content h3 {
+      color: var(--green);
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    .legal-content p {
+      color: var(--gray-600);
+      margin-bottom: 1rem;
+    }
+
+    .legal-content ul {
+      margin-left: 2rem;
+      margin-bottom: 1rem;
+      color: var(--gray-600);
+    }
+
+    .back-to-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--green);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+
     /* Responsive */
     @media (max-width: 480px) {
       .nav-container {
@@ -791,18 +998,26 @@
         font-size: 1.4rem;
       }
       
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
       .countdown-timer {
         font-size: 4rem;
       }
       
       .detail-icon {
-        width: 80px;
-        height: 80px;
-        font-size: 2.5rem;
+        width: 90px;
+        height: 90px;
+        font-size: 2.8rem;
       }
       
       .detail-title h1 {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
       }
       
       .app-detail-header {
@@ -812,17 +1027,27 @@
       .side-menu {
         width: 250px;
       }
+
+      .screenshots-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Modal for screenshots -->
+  <div class="modal" id="imageModal" onclick="closeModal()">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <img id="modalImage" src="" alt="Screenshot">
+  </div>
+
   <!-- Navigation -->
   <nav class="navbar">
     <div class="nav-container">
-      <a href="#" class="logo" onclick="showPage('home'); return false;">
+      <div class="logo" onclick="showPage('home-page'); toggleMenuClose();">
         <i class="fas fa-download"></i>
-        Yedo Apkorbito
-      </a>
+        Apkorbito
+      </div>
       
       <!-- Hamburger Menu Icon -->
       <div class="hamburger" onclick="toggleMenu()">
@@ -840,27 +1065,27 @@
       </div>
     </div>
     <div class="menu-items">
-      <div class="menu-item" onclick="toggleMenu(); showPage('home');">
+      <div class="menu-item" onclick="toggleMenu(); showPage('home-page');">
         <i class="fas fa-home"></i>
         <span>Home</span>
       </div>
-      <div class="menu-item" onclick="toggleMenu(); showPage('home');">
+      <div class="menu-item" onclick="toggleMenu(); showPage('apps-page');">
         <i class="fas fa-mobile-alt"></i>
         <span>Apps</span>
       </div>
-      <div class="menu-item" onclick="toggleMenu(); showPage('home');">
+      <div class="menu-item" onclick="toggleMenu(); showPage('games-page');">
         <i class="fas fa-gamepad"></i>
         <span>Games</span>
       </div>
-      <div class="menu-item" onclick="toggleMenu(); showPage('home');">
+      <div class="menu-item" onclick="toggleMenu(); showPage('categories-page');">
         <i class="fas fa-tags"></i>
         <span>Category</span>
       </div>
-      <div class="menu-item" onclick="toggleMenu(); showPage('home');">
+      <div class="menu-item" onclick="toggleMenu(); showPage('about-page');">
         <i class="fas fa-info-circle"></i>
         <span>About</span>
       </div>
-      <div class="menu-item" onclick="toggleMenu(); showPage('home');">
+      <div class="menu-item" onclick="toggleMenu(); showPage('contact-page');">
         <i class="fas fa-envelope"></i>
         <span>Contact</span>
       </div>
@@ -880,254 +1105,322 @@
         </div>
       </div>
 
-      <section class="hero" style="text-align: center; margin-bottom: 2rem;">
-        <h1 style="font-size: 2rem; margin-bottom: 0.8rem;">Download Latest APKs for Android</h1>
-        <p style="color: var(--gray-600); font-size: 1.1rem;">Fast, secure, and always updated with version selection</p>
+      <section class="hero">
+        <h1>Discover Android Apps</h1>
+        <p>with detailed information, version history, and clean download experience.</p>
         
+        <!-- SEARCH BOX - PERFECTLY CENTERED -->
         <div class="search-box">
-          <input type="text" placeholder="Search for apps...">
-          <button><i class="fas fa-search"></i> Search</button>
+          <input type="text" id="searchInput" placeholder="Search for apps..." onkeyup="searchApps()">
+          <button onclick="searchApps()"><i class="fas fa-search"></i> Search</button>
         </div>
       </section>
 
-      <section id="apps">
+      <!-- Search Results - Initially Hidden -->
+      <div id="searchResults" class="search-results" style="display: none;">
+        <h2 style="margin-bottom: 1rem;">Search Results</h2>
+        <div class="app-grid" id="resultsGrid"></div>
+        <div id="noResults" class="no-results" style="display: none; text-align: center; padding: 2rem;">
+          <i class="fas fa-search" style="font-size: 3rem; color: var(--gray-300); margin-bottom: 1rem;"></i>
+          <p>No apps found matching your search.</p>
+        </div>
+      </div>
+
+      <!-- Featured Apps -->
+      <section id="featuredApps">
         <h2 style="margin-bottom: 1.5rem; font-size: 1.6rem;">Featured Apps</h2>
-        <div class="app-grid">
-          <!-- Video Editor Pro -->
-          <div class="app-card" onclick="openAppDetail('video-editor')">
-            <div class="app-icon">
-              <i class="fas fa-video"></i>
-            </div>
-            <h3>Video Editor Pro</h3>
-            <div class="app-meta">
-              <span class="badge badge-mod">MOD</span>
-              <span class="version-badge">v3.2.1</span>
-            </div>
-            <p style="color: var(--gray-600); margin: 0.8rem 0;">Professional video editor with effects</p>
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-              <span style="background: var(--gray-100); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.8rem;">34 MB</span>
-              <span style="background: var(--gray-100); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.8rem;">Android 8+</span>
-            </div>
+        <div class="app-grid" id="featuredAppsGrid">
+          <!-- Firebase se load hoga -->
+          <div style="text-align: center; grid-column: 1/-1; padding: 2rem;">
+            <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--green);"></i>
+            <p>Loading apps...</p>
           </div>
+        </div>
+      </section>
 
-          <!-- Asphalt Xtreme -->
-          <div class="app-card" onclick="openAppDetail('asphalt')">
-            <div class="app-icon">
-              <i class="fas fa-gamepad"></i>
-            </div>
-            <h3>Asphalt Xtreme</h3>
-            <div class="app-meta">
-              <span class="badge">Game</span>
-              <span class="version-badge">v5.6.0</span>
-            </div>
-            <p style="color: var(--gray-600); margin: 0.8rem 0;">Offroad racing game</p>
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-              <span style="background: var(--gray-100); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.8rem;">1.2 GB</span>
-              <span style="background: var(--gray-100); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.8rem;">Android 9+</span>
-            </div>
-          </div>
-
-          <!-- BeSocial -->
-          <div class="app-card" onclick="openAppDetail('besocial')">
-            <div class="app-icon">
-              <i class="fas fa-users"></i>
-            </div>
-            <h3>BeSocial</h3>
-            <div class="app-meta">
-              <span class="badge">Social</span>
-              <span class="version-badge">v12.4.0</span>
-            </div>
-            <p style="color: var(--gray-600); margin: 0.8rem 0;">Ad-free social experience</p>
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-              <span style="background: var(--gray-100); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.8rem;">45 MB</span>
-              <span style="background: var(--gray-100); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.8rem;">Android 7+</span>
-            </div>
-          </div>
-
-          <!-- Toolbox Plus -->
-          <div class="app-card" onclick="openAppDetail('toolbox')">
-            <div class="app-icon">
-              <i class="fas fa-tools"></i>
-            </div>
-            <h3>Toolbox Plus</h3>
-            <div class="app-meta">
-              <span class="badge">Tools</span>
-              <span class="version-badge">v2.0.5</span>
-            </div>
-            <p style="color: var(--gray-600); margin: 0.8rem 0;">System cleaner and optimizer</p>
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-              <span style="background: var(--gray-100); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.8rem;">28 MB</span>
-              <span style="background: var(--gray-100); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.8rem;">Android 6+</span>
-            </div>
+      <!-- Categories Section -->
+      <section id="categories" style="margin-top: 3rem;">
+        <h2 style="margin-bottom: 1.5rem; font-size: 1.6rem;">Categories</h2>
+        <div class="categories-grid" id="categoriesGrid">
+          <!-- Firebase se load hoga -->
+          <div style="text-align: center; grid-column: 1/-1; padding: 2rem;">
+            <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--green);"></i>
+            <p>Loading categories...</p>
           </div>
         </div>
       </section>
     </div>
   </div>
 
-  <!-- APP DETAIL PAGE (Video Editor Pro) -->
-  <div id="app-video-editor" class="page">
+  <!-- APPS PAGE -->
+  <div id="apps-page" class="page">
     <div class="container">
       <div class="location-bar">
         <div class="location-item">
-          <a href="#" onclick="showPage('home'); return false;">Home</a>
+          <span onclick="showPage('home-page')">Home</span>
         </div>
         <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
         <div class="location-item">
-          <span class="current">Video Editor Pro</span>
+          <span class="current">All Apps</span>
         </div>
       </div>
 
-      <!-- App Header -->
+      <div class="page-header">
+        <h2>All Apps</h2>
+      </div>
+
+      <div class="app-grid" id="allAppsGrid">
+        <div style="text-align: center; grid-column: 1/-1; padding: 2rem;">
+          <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--green);"></i>
+          <p>Loading apps...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAMES PAGE -->
+  <div id="games-page" class="page">
+    <div class="container">
+      <div class="location-bar">
+        <div class="location-item">
+          <span onclick="showPage('home-page')">Home</span>
+        </div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item">
+          <span class="current">Games</span>
+        </div>
+      </div>
+
+      <div class="page-header">
+        <h2>Games</h2>
+      </div>
+
+      <div class="app-grid" id="gamesGrid">
+        <div style="text-align: center; grid-column: 1/-1; padding: 2rem;">
+          <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--green);"></i>
+          <p>Loading games...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORIES PAGE -->
+  <div id="categories-page" class="page">
+    <div class="container">
+      <div class="location-bar">
+        <div class="location-item">
+          <span onclick="showPage('home-page')">Home</span>
+        </div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item">
+          <span class="current">Categories</span>
+        </div>
+      </div>
+
+      <div class="page-header">
+        <h2>Categories</h2>
+      </div>
+
+      <div class="categories-grid" id="allCategoriesGrid">
+        <div style="text-align: center; grid-column: 1/-1; padding: 2rem;">
+          <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--green);"></i>
+          <p>Loading categories...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY APPS PAGE -->
+  <div id="category-apps-page" class="page">
+    <div class="container">
+      <div class="location-bar">
+        <div class="location-item">
+          <span onclick="showPage('home-page')">Home</span>
+        </div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item">
+          <span onclick="showPage('categories-page')">Categories</span>
+        </div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item">
+          <span class="current" id="categoryNameDisplay">Category</span>
+        </div>
+      </div>
+
+      <div class="page-header">
+        <h2 id="categoryTitle">Category Apps</h2>
+      </div>
+
+      <div class="app-grid" id="categoryAppsGrid">
+        <!-- Dynamic content -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT PAGE -->
+  <div id="about-page" class="page">
+    <div class="container">
+      <div class="location-bar">
+        <div class="location-item">
+          <span onclick="showPage('home-page')">Home</span>
+        </div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item">
+          <span class="current">About</span>
+        </div>
+      </div>
+
       <div class="card">
-        <div class="app-detail-header">
-          <div class="detail-icon">
-            <i class="fas fa-video"></i>
-          </div>
-          <div class="detail-title">
-            <h1>Video Editor Pro</h1>
-            <div class="detail-meta">
-              <span class="meta-item"><i class="fas fa-tag"></i> v3.2.1</span>
-              <span class="meta-item"><i class="fas fa-database"></i> 34 MB</span>
-              <span class="meta-item"><i class="fas fa-android"></i> Android 8+</span>
-              <span class="meta-item"><i class="fas fa-calendar"></i> Mar 2025</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- MOD Info -->
-        <div class="mod-info">
-          <h3><i class="fas fa-star"></i> MOD Features</h3>
-          <ul>
-            <li>Premium Unlocked - All features free</li>
-            <li>No Watermark - Export without logo</li>
-            <li>All Effects Unlocked - 500+ premium effects</li>
-            <li>4K Export - No resolution limits</li>
-            <li>No Ads - Completely ad-free</li>
-          </ul>
-        </div>
-
-        <!-- Description -->
-        <h3 style="margin: 1.5rem 0 1rem;">Description</h3>
+        <h2 style="margin-bottom: 1rem;">About Apkorbito</h2>
         <p style="color: var(--gray-600); line-height: 1.6;">
-          Video Editor Pro is the most powerful video editing app for Android. Create stunning videos with professional tools. Trim, cut, merge, add music, effects, transitions, and more. Export in 4K quality without watermarks.
+          Apkorbito helps you discover Android apps with detailed information, version history, and clean download experience. We provide fast, secure, and always updated apps with version selection and MOD options. All files are scanned with Play Protect to ensure 100% safety.
         </p>
-        <p style="color: var(--gray-600); line-height: 1.6; margin-top: 1rem;">
-          Features: Multi-layer timeline, Chroma key (green screen), Speed control, Voiceover, Text animations, Stickers, Filters, Transitions, and much more.
-        </p>
+      </div>
+    </div>
+  </div>
 
-        <!-- Screenshots -->
-        <h3 style="margin: 2rem 0 1rem;">Screenshots</h3>
-        <div class="screenshots-grid">
-          <div class="screenshot"><i class="fas fa-image"></i></div>
-          <div class="screenshot"><i class="fas fa-image"></i></div>
-          <div class="screenshot"><i class="fas fa-image"></i></div>
-          <div class="screenshot"><i class="fas fa-image"></i></div>
+  <!-- CONTACT PAGE -->
+  <div id="contact-page" class="page">
+    <div class="container">
+      <div class="location-bar">
+        <div class="location-item">
+          <span onclick="showPage('home-page')">Home</span>
         </div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item">
+          <span class="current">Contact</span>
+        </div>
+      </div>
 
-        <!-- Download Options -->
-        <h3 style="margin: 2rem 0 1rem;">Download</h3>
-        <div class="download-options">
-          <div class="download-card">
-            <i class="fas fa-bolt"></i>
-            <h3>Direct Download</h3>
-            <p style="font-size: 0.9rem; color: var(--gray-600); margin-bottom: 1rem;">Fast server, No limits</p>
-            <button class="btn btn-green btn-block" onclick="openVersionPage('Video Editor Pro')">
-              <i class="fas fa-download"></i> Download v3.2.1 (MOD)
-            </button>
+      <div class="card">
+        <h2 style="margin-bottom: 1rem;">Contact Us</h2>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <i class="fas fa-envelope" style="color: var(--green); font-size: 1.2rem;"></i>
+            <span>support@apkorbito.com</span>
           </div>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <i class="fas fa-phone" style="color: var(--green); font-size: 1.2rem;"></i>
+            <span>+1 234 567 890</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DMCA PAGE -->
+  <div id="dmca-page" class="page">
+    <div class="container">
+      <div class="location-bar">
+        <div class="location-item">
+          <span onclick="showPage('home-page')">Home</span>
+        </div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item">
+          <span class="current">DMCA</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 style="margin-bottom: 1.5rem; color: var(--green);">DMCA Compliance</h2>
+        <div class="legal-content">
+          <p>Apkorbito respects the intellectual property rights of others and expects its users to do the same. In accordance with the Digital Millennium Copyright Act (DMCA), we will respond promptly to notices of alleged copyright infringement.</p>
           
-          <div class="download-card">
-            <i class="fas fa-copy"></i>
-            <h3>Mirror Download</h3>
-            <p style="font-size: 0.9rem; color: var(--gray-600); margin-bottom: 1rem;">Alternative server</p>
-            <button class="btn btn-outline btn-block" onclick="openVersionPage('Video Editor Pro')">
-              <i class="fas fa-download"></i> Mirror Link
-            </button>
+          <h3>Copyright Infringement Notification</h3>
+          <p>If you believe that any material available on or through the Service infringes upon any copyright you own or control, please immediately notify our Designated Copyright Agent using the contact information below:</p>
+          
+          <ul>
+            <li><strong>Email:</strong> dmca@apkorbito.com</li>
+            <li><strong>Address:</strong> 123 DMCA Agent, Copyright Department, Apkorbito Inc.</li>
+          </ul>
+          
+          <h3>Counter-Notification</h3>
+          <p>If you believe that your material was removed or disabled by mistake or misidentification, you may submit a counter-notification to our Copyright Agent.</p>
+          
+          <div class="back-to-home" onclick="showPage('home-page')">
+            <i class="fas fa-arrow-left"></i> Back to Home
           </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <!-- FAQ -->
-        <h3 style="margin: 2rem 0 1rem;">Frequently Asked Questions</h3>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <i class="fas fa-question-circle"></i>
-            Is Video Editor Pro safe to install?
-          </div>
-          <div class="faq-answer">
-            Yes, 100% safe. All APKs are scanned with Play Protect and multiple antivirus engines.
-          </div>
+  <!-- PRIVACY POLICY PAGE -->
+  <div id="privacy-page" class="page">
+    <div class="container">
+      <div class="location-bar">
+        <div class="location-item">
+          <span onclick="showPage('home-page')">Home</span>
         </div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item">
+          <span class="current">Privacy Policy</span>
+        </div>
+      </div>
 
-        <div class="faq-item">
-          <div class="faq-question">
-            <i class="fas fa-question-circle"></i>
-            How to install MOD version?
-          </div>
-          <div class="faq-answer">
-            Download the APK, enable "Unknown Sources" in settings, open the file and install. No need to uninstall original app.
+      <div class="card">
+        <h2 style="margin-bottom: 1.5rem; color: var(--green);">Privacy Policy</h2>
+        <div class="legal-content">
+          <p>At Apkorbito, accessible from apkorbito.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Apkorbito and how we use it.</p>
+          
+          <h3>Log Files</h3>
+          <p>Apkorbito follows a standard procedure of using log files. These files log visitors when they visit websites. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks.</p>
+          
+          <h3>Cookies and Web Beacons</h3>
+          <p>Like any other website, Apkorbito uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited.</p>
+          
+          <h3>Consent</h3>
+          <p>By using our website, you hereby consent to our Privacy Policy and agree to its Terms and Conditions.</p>
+          
+          <div class="back-to-home" onclick="showPage('home-page')">
+            <i class="fas fa-arrow-left"></i> Back to Home
           </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <div class="faq-item">
-          <div class="faq-question">
-            <i class="fas fa-question-circle"></i>
-            Will I get future updates?
-          </div>
-          <div class="faq-answer">
-            Yes, we update all apps regularly. Check back for latest versions or enable notifications.
-          </div>
+  <!-- DISCLAIMER PAGE -->
+  <div id="disclaimer-page" class="page">
+    <div class="container">
+      <div class="location-bar">
+        <div class="location-item">
+          <span onclick="showPage('home-page')">Home</span>
         </div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item">
+          <span class="current">Disclaimer</span>
+        </div>
+      </div>
 
-        <div class="faq-item">
-          <div class="faq-question">
-            <i class="fas fa-question-circle"></i>
-            Why is the file size different?
-          </div>
-          <div class="faq-answer">
-            MOD versions may have slightly different sizes due to additional features and optimizations.
+      <div class="card">
+        <h2 style="margin-bottom: 1.5rem; color: var(--green);">Disclaimer</h2>
+        <div class="legal-content">
+          <p>If you require any more information or have any questions about our site's disclaimer, please feel free to contact us by email at support@apkorbito.com.</p>
+          
+          <h3>Disclaimers for Apkorbito</h3>
+          <p>All the information on this website - apkorbito.com - is published in good faith and for general information purpose only. Apkorbito does not make any warranties about the completeness, reliability and accuracy of this information. Any action you take upon the information you find on this website (Apkorbito), is strictly at your own risk.</p>
+          
+          <h3>APK Files Disclaimer</h3>
+          <p>All APK files provided on Apkorbito are hosted on third-party servers. We do not host any files on our servers. We only share links to APK files that are freely available on the internet.</p>
+          
+          <div class="back-to-home" onclick="showPage('home-page')">
+            <i class="fas fa-arrow-left"></i> Back to Home
           </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <!-- Version History -->
-        <h3 style="margin: 2rem 0 1rem;">Version History</h3>
-        <div class="table-responsive">
-          <table class="version-table">
-            <tr>
-              <th>Version</th>
-              <th>Size</th>
-              <th>MOD Features</th>
-              <th>Android</th>
-              <th>Date</th>
-              <th>Action</th>
-            </tr>
-            <tr>
-              <td>3.2.1 (MOD)</td>
-              <td>34 MB</td>
-              <td>Premium Unlocked</td>
-              <td>8+</td>
-              <td>Mar 2025</td>
-              <td><a href="#" onclick="openVersionPage('Video Editor Pro'); return false;">Download</a></td>
-            </tr>
-            <tr>
-              <td>3.2.0 (MOD)</td>
-              <td>33 MB</td>
-              <td>Premium Unlocked</td>
-              <td>8+</td>
-              <td>Feb 2025</td>
-              <td><a href="#" onclick="openVersionPage('Video Editor Pro'); return false;">Download</a></td>
-            </tr>
-            <tr>
-              <td>3.1.0</td>
-              <td>32 MB</td>
-              <td>No MOD</td>
-              <td>8+</td>
-              <td>Jan 2025</td>
-              <td><a href="#" onclick="openVersionPage('Video Editor Pro'); return false;">Download</a></td>
-            </tr>
-          </table>
-        </div>
+  <!-- APP DETAIL TEMPLATE -->
+  <div id="app-detail-template" class="page">
+    <div class="container">
+      <div class="location-bar" id="detailLocation">
+        <!-- Dynamic location -->
+      </div>
+
+      <div class="card" id="appDetailContent">
+        <!-- Dynamic app content -->
       </div>
     </div>
   </div>
@@ -1135,56 +1428,18 @@
   <!-- VERSION SELECT PAGE -->
   <div id="version-page" class="page">
     <div class="container">
-      <div class="location-bar">
-        <div class="location-item">
-          <a href="#" onclick="showPage('home'); return false;">Home</a>
-        </div>
-        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
-        <div class="location-item">
-          <a href="#" onclick="showPage('app-video-editor'); return false;" id="versionLocationApp">Video Editor Pro</a>
-        </div>
-        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
-        <div class="location-item">
-          <span class="current">Select Version</span>
-        </div>
+      <div class="location-bar" id="versionLocation">
+        <!-- Dynamic location -->
       </div>
 
       <div class="card">
-        <div style="display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.5rem;">
-          <div class="app-icon" style="width: 60px; height: 60px;">
-            <i class="fas fa-video"></i>
-          </div>
-          <h2 id="versionAppName">Video Editor Pro</h2>
-        </div>
+        <h2 id="versionAppName"></h2>
         
-        <h3 style="margin-bottom: 1.2rem;">Select Version to Download:</h3>
-        
-        <div class="version-selector">
-          <div class="version-option selected" onclick="selectVersion('v3.2.1 (MOD)', '34 MB', this)">
-            <input type="radio" name="version" checked>
-            <div class="version-info">
-              <div class="version-name">Version 3.2.1 (MOD) - Latest</div>
-              <div class="version-details">Premium Unlocked, No Watermark, All Effects</div>
-            </div>
-            <span class="version-size">34 MB</span>
-          </div>
-          
-          <div class="version-option" onclick="selectVersion('v3.2.0 (MOD)', '33 MB', this)">
-            <input type="radio" name="version">
-            <div class="version-info">
-              <div class="version-name">Version 3.2.0 (MOD)</div>
-              <div class="version-details">Premium Unlocked, No Ads</div>
-            </div>
-            <span class="version-size">33 MB</span>
-          </div>
-          
-          <div class="version-option" onclick="selectVersion('v3.1.0', '32 MB', this)">
-            <input type="radio" name="version">
-            <div class="version-info">
-              <div class="version-name">Version 3.1.0 (Original)</div>
-              <div class="version-details">Stable release, No MOD</div>
-            </div>
-            <span class="version-size">32 MB</span>
+        <div class="version-selector" id="versionSelector">
+          <!-- Firebase se load hoga -->
+          <div style="text-align: center; padding: 2rem;">
+            <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--green);"></i>
+            <p>Loading versions...</p>
           </div>
         </div>
 
@@ -1198,22 +1453,8 @@
   <!-- COUNTDOWN PAGE -->
   <div id="countdown-page" class="page">
     <div class="container">
-      <div class="location-bar">
-        <div class="location-item">
-          <a href="#" onclick="showPage('home'); return false;">Home</a>
-        </div>
-        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
-        <div class="location-item">
-          <a href="#" onclick="showPage('app-video-editor'); return false;" id="countdownLocationApp">Video Editor Pro</a>
-        </div>
-        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
-        <div class="location-item">
-          <a href="#" onclick="showPage('version'); return false;">Select Version</a>
-        </div>
-        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
-        <div class="location-item">
-          <span class="current">Preparing</span>
-        </div>
+      <div class="location-bar" id="countdownLocation">
+        <!-- Dynamic location -->
       </div>
 
       <div class="countdown-container">
@@ -1227,7 +1468,7 @@
           <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
         </div>
         
-        <p style="color: var(--gray-600);">Version: <span id="countdownVersion">v3.2.1 (MOD)</span> | Size: <span id="countdownSize">34 MB</span></p>
+        <p style="color: var(--gray-600);">Version: <span id="countdownVersion">v1.0.0</span> | Size: <span id="countdownSize">0 MB</span></p>
         
         <div id="readyToDownload" style="display: none;">
           <p style="color: var(--green); margin: 1.5rem 0 1rem;"><i class="fas fa-check-circle"></i> Your download is ready!</p>
@@ -1245,42 +1486,24 @@
   <!-- FINAL DOWNLOAD PAGE -->
   <div id="final-page" class="page">
     <div class="container">
-      <div class="location-bar">
-        <div class="location-item">
-          <a href="#" onclick="showPage('home'); return false;">Home</a>
-        </div>
-        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
-        <div class="location-item">
-          <a href="#" onclick="showPage('app-video-editor'); return false;" id="finalLocationApp">Video Editor Pro</a>
-        </div>
-        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
-        <div class="location-item">
-          <a href="#" onclick="showPage('version'); return false;">Select Version</a>
-        </div>
-        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
-        <div class="location-item">
-          <a href="#" onclick="showPage('countdown'); return false;">Preparing</a>
-        </div>
-        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
-        <div class="location-item">
-          <span class="current">Download</span>
-        </div>
+      <div class="location-bar" id="finalLocation">
+        <!-- Dynamic location -->
       </div>
 
       <div class="card">
         <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
-          <div class="app-icon" style="width: 80px; height: 80px;">
+          <div class="app-icon" style="width: 80px; height: 80px;" id="finalAppIcon">
             <i class="fas fa-video fa-2x"></i>
           </div>
           <div>
-            <h2 id="finalAppName">Video Editor Pro</h2>
-            <p><span class="badge badge-mod">Version <span id="finalVersion">3.2.1 (MOD)</span></span></p>
-            <p><i class="fas fa-database"></i> Size: <span id="finalSize">34 MB</span></p>
+            <h2 id="finalAppName">App Name</h2>
+            <p><span class="badge" id="finalTypeBadge">Version <span id="finalVersion">1.0.0</span></span></p>
+            <p><i class="fas fa-database"></i> Size: <span id="finalSize">0 MB</span></p>
           </div>
         </div>
 
         <div style="background: #fff3cd; color: #856404; padding: 1rem; border-radius: 12px; margin: 1.5rem 0;">
-          <i class="fas fa-shield-alt"></i> Safety notice: This file has been verified and is 100 percent safe to install.
+          <i class="fas fa-shield-alt"></i> This file has been verified and is 100% safe to install.
         </div>
 
         <div class="download-options">
@@ -1288,7 +1511,7 @@
             <i class="fas fa-bolt"></i>
             <h3>Direct Download</h3>
             <p style="font-size: 0.9rem; color: var(--gray-600); margin-bottom: 1rem;">Fast server, No limits</p>
-            <a href="#" class="btn btn-green btn-block" onclick="return false;">
+            <a href="#" class="btn btn-green btn-block" id="downloadLink" target="_blank">
               <i class="fas fa-download"></i> Download APK
             </a>
           </div>
@@ -1335,117 +1558,490 @@
   <footer class="footer">
     <div class="footer-content">
       <div>
-        <h3 style="color: var(--green); margin-bottom: 0.8rem;">Yedo Apkorbito</h3>
-        <p style="color: var(--gray-600); font-size: 0.95rem;">Your trusted source for Android APKs</p>
+        <h3 style="color: var(--green); margin-bottom: 0.8rem;">Apkorbito</h3>
+        <p style="color: var(--gray-600); font-size: 0.95rem;">Discover Android apps with detailed information, version history, and clean download experience.</p>
       </div>
       
       <div class="footer-links">
         <h4 style="font-size: 1rem; margin-bottom: 0.5rem;">Quick Links</h4>
-        <a href="#" onclick="showPage('home'); return false;">Home</a>
-        <a href="#" onclick="showPage('home'); return false;">Apps</a>
-        <a href="#" onclick="showPage('home'); return false;">Games</a>
-        <a href="#" onclick="showPage('home'); return false;">Category</a>
+        <a onclick="showPage('home-page'); return false;">Home</a>
+        <a onclick="showPage('apps-page'); return false;">Apps</a>
+        <a onclick="showPage('games-page'); return false;">Games</a>
+        <a onclick="showPage('categories-page'); return false;">Category</a>
+        <a onclick="showPage('about-page'); return false;">About</a>
+        <a onclick="showPage('contact-page'); return false;">Contact</a>
       </div>
       
       <div class="footer-links">
         <h4 style="font-size: 1rem; margin-bottom: 0.5rem;">Legal</h4>
-        <a href="#">Privacy Policy</a>
-        <a href="#">DMCA</a>
-        <a href="#">Disclaimer</a>
+        <a onclick="showPage('dmca-page'); return false;">DMCA</a>
+        <a onclick="showPage('privacy-page'); return false;">Privacy Policy</a>
+        <a onclick="showPage('disclaimer-page'); return false;">Disclaimer</a>
       </div>
       
       <div class="footer-links">
         <h4 style="font-size: 1rem; margin-bottom: 0.5rem;">Contact</h4>
-        <a href="#"><i class="fas fa-envelope"></i> support@yedoapkorbito.com</a>
+        <a onclick="showPage('contact-page'); return false;"><i class="fas fa-envelope"></i> Contact Us</a>
       </div>
     </div>
     
     <div class="copyright">
-      <p>&copy; 2025 Yedo Apkorbito. All rights reserved.</p>
+      <p>&copy; 2025 Apkorbito. All rights reserved.</p>
     </div>
   </footer>
 
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
   <script>
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyC7L1lLF5XIJ7-mTW8pFGjU2_YDITfMPAM",
+      authDomain: "samit-dda7a.firebaseapp.com",
+      databaseURL: "https://samit-dda7a-default-rtdb.firebaseio.com",
+      projectId: "samit-dda7a",
+      storageBucket: "samit-dda7a.firebasestorage.app",
+      messagingSenderId: "630285292069",
+      appId: "1:630285292069:web:8333daccc9d99f802825cc"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    const appsRef = database.ref('apps');
+
     // Global variables
-    let selectedVersion = 'v3.2.1 (MOD)';
-    let selectedSize = '34 MB';
-    let currentApp = 'video-editor';
-    let currentAppName = 'Video Editor Pro';
+    let selectedVersion = '';
+    let selectedSize = '';
+    let selectedUrl = '#';
+    let currentAppId = null;
+    let currentAppData = null;
+    let allApps = [];
     let countdownInterval;
-    
+
     // Toggle side menu
     function toggleMenu() {
       document.getElementById('sideMenu').classList.toggle('active');
       document.getElementById('menuOverlay').classList.toggle('active');
     }
-    
+
+    function toggleMenuClose() {
+      document.getElementById('sideMenu').classList.remove('active');
+      document.getElementById('menuOverlay').classList.remove('active');
+    }
+
+    // Show page function
     function showPage(pageId) {
-      // Hide all pages
-      document.getElementById('home-page').classList.remove('active');
-      document.getElementById('app-video-editor').classList.remove('active');
-      document.getElementById('version-page').classList.remove('active');
-      document.getElementById('countdown-page').classList.remove('active');
-      document.getElementById('final-page').classList.remove('active');
-      
-      // Show selected page
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
-      
-      // Scroll to top
       window.scrollTo(0, 0);
-      
-      // Clear countdown if needed
-      if (countdownInterval) {
-        clearInterval(countdownInterval);
-      }
-      
-      // Reset countdown if on countdown page
-      if (pageId === 'countdown-page') {
-        resetCountdown();
-      }
+      if (countdownInterval) clearInterval(countdownInterval);
     }
-    
+
+    // Modal for screenshots
+    function openModal(imgSrc) {
+      document.getElementById('modalImage').src = imgSrc;
+      document.getElementById('imageModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('imageModal').classList.remove('active');
+    }
+
+    // Toggle MOD features
+    function toggleModFeatures(element) {
+      element.classList.toggle('active');
+      const content = element.nextElementSibling;
+      content.classList.toggle('active');
+    }
+
+    // Load all apps from Firebase
+    function loadApps() {
+      appsRef.on('value', (snapshot) => {
+        const apps = snapshot.val();
+        allApps = [];
+        
+        if (apps) {
+          Object.keys(apps).forEach(key => {
+            allApps.push({
+              id: key,
+              ...apps[key]
+            });
+          });
+        }
+
+        // Update all sections
+        updateFeaturedApps();
+        updateCategories();
+        updateAllAppsGrid();
+        updateGamesGrid();
+        updateAllCategoriesGrid();
+      });
+    }
+
+    // Update featured apps on home page
+    function updateFeaturedApps() {
+      const grid = document.getElementById('featuredAppsGrid');
+      if (!allApps.length) {
+        grid.innerHTML = '<p style="text-align: center; color: var(--gray-600);">No apps available</p>';
+        return;
+      }
+
+      // Show first 4 apps as featured
+      const featured = allApps.slice(0, 4);
+      grid.innerHTML = featured.map(app => createAppCard(app)).join('');
+    }
+
+    // Update categories on home page
+    function updateCategories() {
+      const grid = document.getElementById('categoriesGrid');
+      const categories = [...new Set(allApps.map(app => app.category))];
+      
+      if (!categories.length) {
+        grid.innerHTML = '<p style="text-align: center; color: var(--gray-600);">No categories available</p>';
+        return;
+      }
+
+      const categoryCounts = {};
+      allApps.forEach(app => {
+        categoryCounts[app.category] = (categoryCounts[app.category] || 0) + 1;
+      });
+
+      grid.innerHTML = categories.map(cat => `
+        <div class="category-card" onclick="showCategoryApps('${cat}')">
+          <div class="category-icon"><i class="fas ${getCategoryIcon(cat)}"></i></div>
+          <h3 class="category-title">${cat}</h3>
+          <span class="badge">${categoryCounts[cat] || 0} apps</span>
+        </div>
+      `).join('');
+    }
+
+    // Update all apps grid
+    function updateAllAppsGrid() {
+      const grid = document.getElementById('allAppsGrid');
+      if (!allApps.length) {
+        grid.innerHTML = '<p style="text-align: center; color: var(--gray-600);">No apps available</p>';
+        return;
+      }
+      grid.innerHTML = allApps.map(app => createAppCard(app)).join('');
+    }
+
+    // Update games grid
+    function updateGamesGrid() {
+      const grid = document.getElementById('gamesGrid');
+      const games = allApps.filter(app => app.category === 'Games');
+      if (!games.length) {
+        grid.innerHTML = '<p style="text-align: center; color: var(--gray-600);">No games available</p>';
+        return;
+      }
+      grid.innerHTML = games.map(app => createAppCard(app)).join('');
+    }
+
+    // Update all categories grid
+    function updateAllCategoriesGrid() {
+      const grid = document.getElementById('allCategoriesGrid');
+      const categories = [...new Set(allApps.map(app => app.category))];
+      
+      if (!categories.length) {
+        grid.innerHTML = '<p style="text-align: center; color: var(--gray-600);">No categories available</p>';
+        return;
+      }
+
+      const categoryCounts = {};
+      allApps.forEach(app => {
+        categoryCounts[app.category] = (categoryCounts[app.category] || 0) + 1;
+      });
+
+      grid.innerHTML = categories.map(cat => `
+        <div class="category-card" onclick="showCategoryApps('${cat}')">
+          <div class="category-icon"><i class="fas ${getCategoryIcon(cat)}"></i></div>
+          <h3 class="category-title">${cat}</h3>
+          <span class="badge">${categoryCounts[cat] || 0} apps</span>
+        </div>
+      `).join('');
+    }
+
+    // Get category icon
+    function getCategoryIcon(category) {
+      const icons = {
+        'Video Editors': 'fa-video',
+        'Games': 'fa-gamepad',
+        'Social Apps': 'fa-users',
+        'Tools': 'fa-wrench'
+      };
+      return icons[category] || 'fa-folder';
+    }
+
+    // Create app card HTML
+    function createAppCard(app) {
+      const typeBadge = app.type === 'mod' ? '<span class="badge badge-mod">MOD</span>' : '<span class="badge">App</span>';
+      
+      // Check if icon is URL or Font Awesome
+      const isUrl = app.icon && app.icon.startsWith('http');
+      const iconHtml = isUrl ? 
+        `<img src="${app.icon}" alt="icon" onerror="this.src='https://via.placeholder.com/70?text=Icon'">` : 
+        `<i class="fas ${app.icon || 'fa-video'}"></i>`;
+      
+      return `
+        <div class="app-card" onclick="openAppDetail('${app.id}')">
+          <div class="app-icon">${iconHtml}</div>
+          <h3>${app.name}</h3>
+          <div class="app-meta">
+            ${typeBadge}
+            <span class="version-badge">${app.version || 'v1.0'}</span>
+          </div>
+          <p style="color: var(--gray-600); margin: 0.8rem 0;">${app.description ? app.description.substring(0, 40) + '...' : ''}</p>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <span style="background: var(--gray-100); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.8rem;">${app.size || '0 MB'}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    // Open app detail with professional layout
     function openAppDetail(appId) {
-      currentApp = appId;
-      
-      // Set app name based on which app
-      if (appId === 'video-editor') {
-        currentAppName = 'Video Editor Pro';
-      } else if (appId === 'asphalt') {
-        currentAppName = 'Asphalt Xtreme';
-      } else if (appId === 'besocial') {
-        currentAppName = 'BeSocial';
-      } else if (appId === 'toolbox') {
-        currentAppName = 'Toolbox Plus';
+      const app = allApps.find(a => a.id === appId);
+      if (!app) return;
+
+      currentAppId = appId;
+      currentAppData = app;
+
+      const locationBar = document.getElementById('detailLocation');
+      locationBar.innerHTML = `
+        <div class="location-item"><span onclick="showPage('home-page')">Home</span></div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item"><span class="current">${app.name}</span></div>
+      `;
+
+      // Check if icon is URL or Font Awesome
+      const isUrl = app.icon && app.icon.startsWith('http');
+      const iconHtml = isUrl ? 
+        `<img src="${app.icon}" alt="icon" onerror="this.src='https://via.placeholder.com/120?text=Icon'">` : 
+        `<i class="fas ${app.icon || 'fa-video'}"></i>`;
+
+      // Format date
+      const lastUpdated = app.lastUpdated ? new Date(app.lastUpdated).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Not specified';
+
+      // MOD Features - Collapsible
+      const modFeaturesHtml = app.type === 'mod' && app.modFeatures ? `
+        <div class="mod-info">
+          <div class="mod-header" onclick="toggleModFeatures(this)">
+            <h3><i class="fas fa-star"></i> MOD Features <span style="font-size:0.8rem; margin-left:0.5rem;">(tap to expand)</span></h3>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+          <div class="mod-content">
+            <ul>
+              ${app.modFeatures.map(f => `<li>${f}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+      ` : '';
+
+      // Screenshots
+      let screenshotsHtml = '<div class="screenshots-grid">';
+      if (app.screenshots && app.screenshots.length > 0) {
+        app.screenshots.forEach(url => {
+          screenshotsHtml += `
+            <div class="screenshot" onclick="openModal('${url}')">
+              <img src="${url}" alt="Screenshot" onerror="this.parentElement.innerHTML='<div class=\\'screenshot-placeholder\\'><i class=\\'fas fa-image\\'></i></div>'">
+            </div>
+          `;
+        });
+      } else {
+        // Placeholders
+        for (let i = 0; i < 4; i++) {
+          screenshotsHtml += `
+            <div class="screenshot">
+              <div class="screenshot-placeholder"><i class="fas fa-image"></i></div>
+            </div>
+          `;
+        }
       }
-      
-      showPage('app-' + appId);
+      screenshotsHtml += '</div>';
+
+      // Features
+      let featuresHtml = '<div class="features-list">';
+      if (app.features && app.features.length > 0) {
+        app.features.forEach(f => {
+          featuresHtml += `
+            <div class="feature-item">
+              <i class="fas fa-check-circle"></i>
+              <span>${f}</span>
+            </div>
+          `;
+        });
+      } else {
+        // Default features
+        const defaultFeatures = ['High Quality', 'Regular Updates', 'User Friendly', 'Secure'];
+        defaultFeatures.forEach(f => {
+          featuresHtml += `
+            <div class="feature-item">
+              <i class="fas fa-check-circle"></i>
+              <span>${f}</span>
+            </div>
+          `;
+        });
+      }
+      featuresHtml += '</div>';
+
+      const content = document.getElementById('appDetailContent');
+      content.innerHTML = `
+        <div class="app-detail-header">
+          <div class="detail-icon">${iconHtml}</div>
+          <div class="detail-title">
+            <h1>${app.name}</h1>
+            <div class="developer"><i class="fas fa-user"></i> ${app.developer || 'Unknown Developer'}</div>
+            <div class="detail-meta">
+              <span class="meta-item"><i class="fas fa-tag"></i> ${app.version || 'v1.0'}</span>
+              <span class="meta-item"><i class="fas fa-database"></i> ${app.size || '0 MB'}</span>
+              <span class="meta-item"><i class="fas fa-android"></i> ${app.android || 'Android 8+'}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Category</span>
+            <span class="info-value">${app.category || 'Uncategorized'}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Last Updated</span>
+            <span class="info-value">${lastUpdated}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Developer</span>
+            <span class="info-value">${app.developer || 'Unknown'}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">File Size</span>
+            <span class="info-value">${app.size || '0 MB'}</span>
+          </div>
+        </div>
+
+        ${modFeaturesHtml}
+
+        <h3 style="margin: 2rem 0 1rem;">Screenshots</h3>
+        ${screenshotsHtml}
+
+        <h3 style="margin: 2rem 0 1rem;">About This App</h3>
+        <p style="color: var(--gray-600); line-height: 1.8;">${app.description || 'No description available.'}</p>
+
+        <h3 style="margin: 2rem 0 1rem;">Features</h3>
+        ${featuresHtml}
+
+        <div class="whats-new">
+          <h3><i class="fas fa-whatsapp"></i> What's New</h3>
+          <p>${app.whatsNew || 'Bug fixes and performance improvements'}</p>
+        </div>
+
+        <div class="download-section">
+          <button class="download-button" onclick="openVersionPage('${app.id}')">
+            <i class="fas fa-download"></i> Download ${app.version || 'v1.0'} ${app.type === 'mod' ? '(MOD)' : ''}
+          </button>
+        </div>
+
+        <div class="app-disclaimer">
+          <i class="fas fa-shield-alt" style="color: var(--green);"></i> This file has been verified and is 100% safe to install. All APKs are scanned with Play Protect.
+        </div>
+      `;
+
+      showPage('app-detail-template');
     }
-    
-    function openVersionPage(appName) {
-      currentAppName = appName;
-      document.getElementById('versionAppName').textContent = appName;
-      document.getElementById('versionLocationApp').textContent = appName;
-      document.getElementById('countdownLocationApp').textContent = appName;
-      document.getElementById('finalLocationApp').textContent = appName;
-      document.getElementById('finalAppName').textContent = appName;
+
+    // Show category apps
+    function showCategoryApps(category) {
+      document.getElementById('categoryNameDisplay').textContent = category;
+      document.getElementById('categoryTitle').textContent = category + ' Apps';
       
-      // Reset selection
-      selectedVersion = 'v3.2.1 (MOD)';
-      selectedSize = '34 MB';
+      const categoryApps = allApps.filter(app => app.category === category);
+      const grid = document.getElementById('categoryAppsGrid');
       
-      const options = document.querySelectorAll('#version-page .version-option');
-      options.forEach(opt => opt.classList.remove('selected'));
-      if (options[0]) {
-        options[0].classList.add('selected');
-        options[0].querySelector('input').checked = true;
+      if (categoryApps.length) {
+        grid.innerHTML = categoryApps.map(app => createAppCard(app)).join('');
+      } else {
+        grid.innerHTML = '<p style="text-align: center; color: var(--gray-600);">No apps in this category</p>';
       }
       
+      showPage('category-apps-page');
+    }
+
+    // Search apps
+    function searchApps() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      const resultsGrid = document.getElementById('resultsGrid');
+      const noResults = document.getElementById('noResults');
+      const featuredApps = document.getElementById('featuredApps');
+      const searchResults = document.getElementById('searchResults');
+      
+      if (query === '') {
+        searchResults.style.display = 'none';
+        featuredApps.style.display = 'block';
+        return;
+      }
+      
+      const results = allApps.filter(app => 
+        app.name.toLowerCase().includes(query) || 
+        (app.category && app.category.toLowerCase().includes(query))
+      );
+      
+      resultsGrid.innerHTML = '';
+      if (results.length > 0) {
+        resultsGrid.innerHTML = results.map(app => createAppCard(app)).join('');
+        noResults.style.display = 'none';
+      } else {
+        noResults.style.display = 'block';
+      }
+      
+      searchResults.style.display = 'block';
+      featuredApps.style.display = 'none';
+    }
+
+    // Open version page
+    function openVersionPage(appId) {
+      const app = allApps.find(a => a.id === appId);
+      if (!app) return;
+
+      document.getElementById('versionAppName').textContent = app.name;
+      
+      // Set location
+      const location = document.getElementById('versionLocation');
+      location.innerHTML = `
+        <div class="location-item"><span onclick="showPage('home-page')">Home</span></div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item"><span onclick="openAppDetail('${app.id}')">${app.name}</span></div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item"><span class="current">Select Version</span></div>
+      `;
+
+      // Show version options
+      const versionSelector = document.getElementById('versionSelector');
+      const versionDisplay = app.type === 'mod' ? `${app.version} (MOD)` : app.version;
+      
+      versionSelector.innerHTML = `
+        <div class="version-option selected" onclick="selectVersion('${versionDisplay}', '${app.size || '0 MB'}', '${app.url || '#'}', this)">
+          <input type="radio" name="version" checked>
+          <div class="version-info">
+            <div class="version-name">${versionDisplay} - Latest</div>
+            <div class="version-details">${app.type === 'mod' ? 'MOD version with premium features' : 'Official release'}</div>
+          </div>
+          <span class="version-size">${app.size || '0 MB'}</span>
+        </div>
+      `;
+
+      // Store selected values
+      selectedVersion = versionDisplay;
+      selectedSize = app.size || '0 MB';
+      selectedUrl = app.url || '#';
+
       showPage('version-page');
     }
-    
-    function selectVersion(version, size, element) {
+
+    // Select version
+    function selectVersion(version, size, url, element) {
       selectedVersion = version;
       selectedSize = size;
+      selectedUrl = url;
       
       document.querySelectorAll('#version-page .version-option').forEach(opt => {
         opt.classList.remove('selected');
@@ -1454,29 +2050,39 @@
       element.classList.add('selected');
       element.querySelector('input').checked = true;
     }
-    
+
+    // Go to countdown
     function goToCountdown() {
       document.getElementById('countdownVersion').textContent = selectedVersion;
       document.getElementById('countdownSize').textContent = selectedSize;
       
+      // Set location
+      const location = document.getElementById('countdownLocation');
+      location.innerHTML = `
+        <div class="location-item"><span onclick="showPage('home-page')">Home</span></div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item"><span onclick="openAppDetail('${currentAppId}')">${currentAppData?.name || 'App'}</span></div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item"><span onclick="showPage('version-page')">Select Version</span></div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item"><span class="current">Preparing</span></div>
+      `;
+      
       showPage('countdown-page');
       startCountdown();
     }
-    
-    function resetCountdown() {
-      document.getElementById('readyToDownload').style.display = 'none';
-      document.getElementById('countdownDisplay').textContent = '3';
-      document.getElementById('progressFill').style.width = '0%';
-    }
-    
+
+    // Start countdown
     function startCountdown() {
       let count = 3;
       const countdownEl = document.getElementById('countdownDisplay');
       const progressEl = document.getElementById('progressFill');
       
-      if (countdownInterval) {
-        clearInterval(countdownInterval);
-      }
+      document.getElementById('readyToDownload').style.display = 'none';
+      countdownEl.textContent = '3';
+      progressEl.style.width = '0%';
+      
+      if (countdownInterval) clearInterval(countdownInterval);
       
       countdownInterval = setInterval(() => {
         count--;
@@ -1490,12 +2096,45 @@
         }
       }, 1000);
     }
-    
+
+    // Go to final download
     function goToFinalDownload() {
-      document.getElementById('finalVersion').textContent = selectedVersion.replace('v', '');
+      document.getElementById('finalVersion').textContent = selectedVersion;
       document.getElementById('finalSize').textContent = selectedSize;
+      document.getElementById('finalAppName').textContent = currentAppData?.name || 'App';
+      
+      const typeBadge = currentAppData?.type === 'mod' ? 'badge-mod' : 'badge';
+      document.getElementById('finalTypeBadge').className = typeBadge;
+      
+      const iconContainer = document.getElementById('finalAppIcon');
+      if (currentAppData?.icon && currentAppData.icon.startsWith('http')) {
+        iconContainer.innerHTML = `<img src="${currentAppData.icon}" alt="icon" style="width:100%;height:100%;object-fit:cover;border-radius:18px;">`;
+      } else {
+        iconContainer.innerHTML = `<i class="fas ${currentAppData?.icon || 'fa-video'} fa-2x"></i>`;
+      }
+      
+      const downloadLink = document.getElementById('downloadLink');
+      downloadLink.href = selectedUrl || '#';
+      
+      // Set location
+      const location = document.getElementById('finalLocation');
+      location.innerHTML = `
+        <div class="location-item"><span onclick="showPage('home-page')">Home</span></div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item"><span onclick="openAppDetail('${currentAppId}')">${currentAppData?.name || 'App'}</span></div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item"><span onclick="showPage('version-page')">Select Version</span></div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item"><span onclick="showPage('countdown-page')">Preparing</span></div>
+        <span class="location-separator"><i class="fas fa-chevron-right"></i></span>
+        <div class="location-item"><span class="current">Download</span></div>
+      `;
+      
       showPage('final-page');
     }
+
+    // Initialize
+    loadApps();
   </script>
 </body>
 </html>
